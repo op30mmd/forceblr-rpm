@@ -5,7 +5,7 @@ Summary:        KWin effect to blur the background behind semi-transparent windo
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/taj-ny/kwin-effects-forceblur
-Source0:        https://github.com/taj-ny/kwin-effects-forceblur/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{url}/archive/refs/heads/main.tar.gz
 
 # Build dependencies derived from the provided dnf install command
 BuildRequires:  cmake
@@ -34,7 +34,7 @@ BuildRequires:  wayland-devel
 Forceblur is a KWin effect that blurs the background behind semi-transparent windows.
 
 %prep
-%autosetup -n kwin-effects-forceblur-%{version}
+%autosetup -n kwin-effects-forceblur-main
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=/usr
