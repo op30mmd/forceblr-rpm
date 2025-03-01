@@ -1,5 +1,4 @@
 ---
-specfile: kwin-effects-forceblur.spec
-sources:
-  - filename: kwin-effects-forceblur-0.1.tar.gz
-    url: https://github.com/taj-ny/kwin-effects-forceblur/archive/refs/heads/main.tar.gz
+spec: kwin-effects-forceblur.spec
+chroots:
+  - fedora-41-x86_64
