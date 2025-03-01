@@ -1,6 +1,4 @@
 %global forname kwin-effects-forceblur
-%global commit 9fb19aafddecb64fa38b1d5f90ab4af809da0cd1
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           kwin-effects-forceblur
 Version:        0.1
@@ -9,7 +7,7 @@ Summary:        Force blur effect for KDE Plasma KWin
 
 License:        GPLv3+
 URL:            https://github.com/taj-ny/kwin-effects-forceblur
-Source0:        %{url}/archive/%{commit}/%{forname}-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/refs/heads/master.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
@@ -47,7 +45,7 @@ it natively. This plugin adds a KWin window rule that can be configured to
 apply blur to specific windows or window classes.
 
 %prep
-%autosetup -n %{forname}-%{commit}
+%autosetup -n %{name}-master
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=/usr
@@ -57,7 +55,6 @@ apply blur to specific windows or window classes.
 %cmake_install
 
 %files
-%license LICENSE
 %{_kf6_plugindir}/kwin/effects/plugins/kwin4_effect_forceblur.so
 %{_kf6_datadir}/kwin/effects/forceblur/
 %{_datadir}/kwin/scripts/forceblur/
