@@ -1,14 +1,13 @@
-%global forname kwin-effects-forceblur
-
 Name:           kwin-effects-forceblur
-Version:        0.1
+Version:        0.4.1
 Release:        1%{?dist}
-Summary:        Force blur effect for KDE Plasma KWin
+Summary:        KWin effect to blur the background behind semi-transparent windows
 
-License:        GPLv3+
+License:        GPL-3.0-or-later
 URL:            https://github.com/taj-ny/kwin-effects-forceblur
-Source0:        %{url}/archive/refs/heads/main.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/taj-ny/kwin-effects-forceblur/archive/refs/tags/v%{version}.tar.gz
 
+# Build dependencies derived from the provided dnf install command
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
@@ -31,21 +30,11 @@ BuildRequires:  kf6-kdeclarative-devel
 BuildRequires:  kdecoration-devel
 BuildRequires:  wayland-devel
 
-Requires:       kf6-kglobalaccel
-Requires:       kf6-kdeclarative
-Requires:       libplasma
-Requires:       kf6-kio
-Requires:       qt6-qtbase
-Requires:       kf6-kguiaddons
-Requires:       kf6-ki18n
-
 %description
-A KWin effect that allows you to force blur on windows that don't support 
-it natively. This plugin adds a KWin window rule that can be configured to 
-apply blur to specific windows or window classes.
+Forceblur is a KWin effect that blurs the background behind semi-transparent windows.
 
 %prep
-%setup -q -n %{name}-main
+%autosetup -n kwin-effects-forceblur-%{version}
 
 %build
 %cmake -DCMAKE_INSTALL_PREFIX=/usr
@@ -53,18 +42,13 @@ apply blur to specific windows or window classes.
 
 %install
 %cmake_install
-# List installed files for debugging
-find %{buildroot} -type f -o -type l | sort
 
 %files
-# Use wildcard paths to be more flexible
-%dir %{_libdir}/qt6/plugins/kwin/effects/
-%{_libdir}/qt6/plugins/kwin/effects/*.so
-%dir %{_datadir}/kwin/
-%{_datadir}/kwin/*
-# Configuration files
-%{_datadir}/config.kcfg/*
-# License
 %license LICENSE
-# Documentation
 %doc README.md
+%{_libdir}/qt6/plugins/kwin/effects/forceblur.so
+%{_datadir}/kwin/effects/forceblur/metadata.desktop
+
+%changelog
+* Wed Oct 11 2023 Your Name <your@email.com> - 0.4.1-1
+- Initial package
