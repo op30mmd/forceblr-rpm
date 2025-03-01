@@ -53,14 +53,18 @@ apply blur to specific windows or window classes.
 
 %install
 %cmake_install
+# List installed files for debugging
+find %{buildroot} -type f -o -type l | sort
 
 %files
-%{_kf6_plugindir}/kwin/effects/plugins/kwin4_effect_forceblur.so
-%{_kf6_datadir}/kwin/effects/forceblur/
-%{_datadir}/kwin/scripts/forceblur/
-%{_datadir}/metainfo/org.kde.kwin.effect.forceblur.metainfo.xml
-%{_datadir}/kwin/tabbox/forceblur/
-
-%changelog
-* Sat Mar 01 2025 Package Builder <builder@example.com> - 0.1-1
-- Initial package for COPR
+# Use wildcard paths to be more flexible
+%dir %{_libdir}/qt6/plugins/kwin/effects/
+%{_libdir}/qt6/plugins/kwin/effects/*.so
+%dir %{_datadir}/kwin/
+%{_datadir}/kwin/*
+# Configuration files
+%{_datadir}/config.kcfg/*
+# License
+%license LICENSE
+# Documentation
+%doc README.md
